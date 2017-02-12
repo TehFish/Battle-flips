@@ -41,17 +41,21 @@ public class Ship {
 		board[getPosition()] = -1;
 		switch (getDirection()){
 		case 'r':
-			board [getPosition() + 1] = -1;
-			board [getPosition() + 2] = -1;
+			board[getPosition() + 1] = -1;
+			board[getPosition() + 2] = -1;
+			break;
 		case 'l':
-			board [getPosition() - 1] = -1;
-			board [getPosition() - 2] = -1;
+			board[getPosition() - 1] = -1;
+			board[getPosition() - 2] = -1;
+			break;
 		case 'u':
 			board[getPosition() - 10] = -1;
 			board[getPosition() - 20] = -1;
+			break;
 		case 'd':
 			board[getPosition() + 10] = -1;
 			board[getPosition() + 20] = -1;
+			break;
 		}
 
 	}
