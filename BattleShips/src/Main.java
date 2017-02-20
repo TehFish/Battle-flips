@@ -5,7 +5,7 @@ public class Main {
 	public static int[] board2 = new int[101];
 	private static final String YES = "yes";
 	public static void main(String[] args) {
-		// TODO fix oponentboard print
+		// TODO fix oponentboard print ummm
 		Ship[] ships = new Ship[2];
 		Ship[] ships2 = new Ship[2];
 		int oponent = 1;
