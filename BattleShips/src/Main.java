@@ -5,22 +5,16 @@ public class Main {
 	public static int[] board2 = new int[101];
 	private static final String YES = "yes";
 	public static void main(String[] args) {
-		// TODO
+		// TODO fix oponentboard print
 		Ship[] ships = new Ship[2];
 		Ship[] ships2 = new Ship[2];
 		int oponent = 1;
 		boardReset(board);
 		boardReset(board2);
-		for (int i = 0; i < 2; i++){
-			if (oponent == 1){
-				startGame(board, ships, oponent);
-				oponent = 2;
-			}
-			else{
-				startGame(board2, ships2, oponent);
-				oponent = 1;
-			}
-		}
+		startGame(board, ships, oponent);
+		oponent = 2;
+		startGame(board2, ships2, oponent);
+
 		while (end(board) || end(board2)){
 			if (oponent == 1){
 				System.out.println("it's oponent no.1's turn to shoot");
@@ -41,15 +35,19 @@ public class Main {
 			if (sc.next().equals(YES)){
 				System.out.println("This is how the oponents board looks like");
 				showOponentBoard(board2);
+				try {
+					Thread.sleep(50000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 			}
 		}
 	}
 	public static boolean end(int[] board){
 		for (int i : board){
-			if (i == -1){
+			if (i == -1)
 				return false;
-			}
 		}
 		return true;
 	}
@@ -153,74 +151,76 @@ public class Main {
 					}
 					continue;
 				}
-					switch(ships[i].getPosition()){
-					case 'r':
-						if (board[ships[i].getPosition() + 1] == -1 || board[ships[i].getPosition() + 2] == -1){
-							System.out.println("There is already a ship there please try again");
-							i--;
-							System.out.println("Do you want to see how your side looks?");
-							if (sc.next().equals(YES)){
-								System.out.println("This is how your side looks like");
-								showBoard(board);
-							}
-							break;
+				switch(ships[i].getDirection()){
+				case 'r':
+					if (board[ships[i].getPosition() + 1] == -1 || board[ships[i].getPosition() + 2] == -1){
+						System.out.println("There is already a ship there please try again");
+						i--;
+						System.out.println("Do you want to see how your side looks?");
+						if (sc.next().equals(YES)){
+							System.out.println("This is how your side looks like");
+							showBoard(board);
 						}
-						if (oponent == 1)
-							ships[i].place(board);
-						else
-							ships[i].place(board2);
-						continue;
-					case 'l':
-						if (board[ships[i].getPosition() - 1] == -1 || board[ships[i].getPosition() - 2] == -1){
-							System.out.println("There is already a ship there please try again");
-							i--;
-							System.out.println("Do you want to see how your side looks?");
-							if (sc.next().equals(YES)){
-								System.out.println("This is how your side looks like");
-								showBoard(board);
-							}
-							break;
-						}
-						if (oponent == 1)
-							ships[i].place(board);
-						else
-							ships[i].place(board2);
-						continue;
-					case 'd':
-						if (board[ships[i].getPosition() + 10] == -1 || board[ships[i].getPosition() + 20] == -1){
-							System.out.println("There is already a ship there please try again");
-							i--;
-							System.out.println("Do you want to see how your side looks?");
-							if (sc.next().equals(YES)){
-								System.out.println("This is how your side looks like");
-								showBoard(board);
-							}
-							break;
-						}
-						if (oponent == 1)
-							ships[i].place(board);
-						else
-							ships[i].place(board2);
-						continue;
-					case 'u':	
-						if (board[ships[i].getPosition() - 10] == -1 || board[ships[i].getPosition() - 20] == -1){
-							System.out.println("There is already a ship there please try again");
-							i--;
-							System.out.println("Do you want to see how your side looks?");
-							if (sc.next().equals(YES)){
-								System.out.println("This is how your side looks like");
-								showBoard(board);
-							}
-							break;
-						}
-						if (oponent == 1)
-							ships[i].place(board);
-						else
-							ships[i].place(board2);
-						continue;
+						break;
 					}
+
+					if (oponent == 1)
+						ships[i].place(board);
+					else
+						ships[i].place(board2);
+					continue;
+				case 'l':
+					if (board[ships[i].getPosition() - 1] == -1 || board[ships[i].getPosition() - 2] == -1){	
+						System.out.println("There is already a ship there please try again");
+						i--;
+						System.out.println("Do you want to see how your side looks?");
+						if (sc.next().equals(YES)){
+							System.out.println("This is how your side looks like");
+							showBoard(board);
+						}
+						break;
+					}
+
+					if (oponent == 1)
+						ships[i].place(board);
+					else
+						ships[i].place(board2);
+					continue;
+				case 'd':
+					if (board[ships[i].getPosition() + 10] == -1 || board[ships[i].getPosition() + 20] == -1){
+						System.out.println("There is already a ship there please try again");
+						i--;
+						System.out.println("Do you want to see how your side looks?");
+						if (sc.next().equals(YES)){
+							System.out.println("This is how your side looks like");
+							showBoard(board);
+						}
+						break;
+					}
+					if (oponent == 1)
+						ships[i].place(board);
+					else
+						ships[i].place(board2);
+					continue;
+				case 'u':	
+					if (board[ships[i].getPosition() - 10] == -1 || board[ships[i].getPosition() - 20] == -1){
+						System.out.println("There is already a ship there please try again");
+						i--;
+						System.out.println("Do you want to see how your side looks?");
+						if (sc.next().equals(YES)){
+							System.out.println("This is how your side looks like");
+							showBoard(board);
+						}
+						break;
+					}
+					if (oponent == 1)
+						ships[i].place(board);
+					else
+						ships[i].place(board2);
+					continue;
 				}
-			
+			}
+
 			catch (IndexOutOfBoundsException e){
 				System.out.println("The ship is out of the board please try again");
 				i--;
@@ -245,15 +245,17 @@ public class Main {
 		if (sc.next().equals(YES)){
 			System.out.println("This is how the oponents board looks like");
 			showOponentBoard(board);
-		}
-		try {
-			Thread.sleep(50000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
 	}
 }
+
 
 
 
