@@ -5,11 +5,10 @@ public class Test {
 		// TODO Auto-generated method stud
 		Ship s = new Ship();
 		Main.boardReset(Main.board);
-	//	s.setPosition(25);
-		//s.setDirection('u');
-		//s.setLength(3);
-		//s.place(Main.board);
-		if (Main.end(Main.board) == true)
-			System.out.println("yes");
+		s.setPosition(25);
+		s.setDirection('u');
+		s.setLength(3);
+		s.place(Main.board);
+		Main.showOponentBoard(Main.board);
 	}
 }

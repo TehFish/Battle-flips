@@ -57,12 +57,5 @@ public class Ship {
 			board[getPosition() + 20] = -1;
 			break;
 		}
-
 	}
-
-	 
-	 
-
-	
-
 }

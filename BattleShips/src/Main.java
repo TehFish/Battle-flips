@@ -5,7 +5,7 @@ public class Main {
 	public static int[] board2 = new int[101];
 	private static final String YES = "yes";
 	public static void main(String[] args) {
-		// TODO fix oponentboard print ummm
+		// TODO fix oponentboard print
 		Ship[] ships = new Ship[2];
 		Ship[] ships2 = new Ship[2];
 		int oponent = 1;
@@ -14,6 +14,7 @@ public class Main {
 		startGame(board, ships, oponent);
 		oponent = 2;
 		startGame(board2, ships2, oponent);
+		oponent = 1;
 
 		while (end(board) || end(board2)){
 			if (oponent == 1){
@@ -47,9 +48,9 @@ public class Main {
 	public static boolean end(int[] board){
 		for (int i : board){
 			if (i == -1)
-				return false;
+				return true;
 		}
-		return true;
+		return false;
 	}
 	public static void shoot(int[] board){
 		boolean hit = true;
@@ -101,16 +102,18 @@ public class Main {
 		for (int i : board){
 			if (counter % 10 == 0)
 				System.out.println();
-			if (i == -1){
-				i = counter + 1;
-				System.out.print(i+"  ");
-			}
-			if (counter < 10)
+			if (counter < 10){
 				if (i == -1){
-					System.out.println(i+"  ");
+					i = counter + 1;
+					System.out.print(i+"   ");	
 				}
 				else
 					System.out.print(i+"   ");
+			}
+			else if (i == -1){
+				i = counter + 1;
+				System.out.print(i+"  ");
+			}
 			else
 				System.out.print(i+"  ");
 			counter++;
@@ -241,17 +244,12 @@ public class Main {
 			System.out.println("This is how your side looks like");
 			showBoard(board);
 		}
-		System.out.println("Do you want to see the oponent's board?");
-		if (sc.next().equals(YES)){
-			System.out.println("This is how the oponents board looks like");
-			showOponentBoard(board);
-
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
+		
 		System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
 	}
 }
