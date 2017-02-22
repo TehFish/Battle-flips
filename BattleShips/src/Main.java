@@ -6,8 +6,63 @@ public class Main {
 	private static final String YES = "yes";
 	public static void main(String[] args) {
 		// TODO fix oponentboard print
-		Ship[] ships = new Ship[2];
-		Ship[] ships2 = new Ship[2];
+		/**
+		 * 	if (end(board)){
+				System.out.println("Oponent number 2 has won!");
+				break;
+			}
+			else if (end(board2)){
+				System.out.println("Oponent number 1 has won!");
+				break;
+			}
+		 */
+
+
+		/**
+		 * while (true){
+			if (oponent == 1){
+				System.out.println("it's oponent no.1's turn to shoot");
+				shoot(board2);
+				oponent = 2;
+			}
+			else if (oponent == 2){
+				System.out.println("It's oponent no.2's turn to shoot");
+				shoot(board);
+				oponent = 1;
+			}
+			if (end(board)){
+				System.out.println("Oponent number 2 has won!");
+				break;
+			}
+			else if (end(board2)){
+				System.out.println("Oponent number 1 has won!");
+				break;
+			}
+			System.out.println("Do you want to see how your side looks?");
+			if (sc.next().equals(YES) && oponent == 1){
+				System.out.println("This is how your side looks like");
+				showBoard(board);
+			}
+			else if (sc.next().equals(YES) && oponent == 2){
+				System.out.println("This is how your side looks like");
+				showBoard(board2);
+			}
+			System.out.println("Do you want to see the oponent's board?");
+			if (sc.next().equals(YES) && oponent == 1){
+				System.out.println("This is how the oponents board looks like");
+				showOponentBoard(board2);
+			}
+			else if (sc.next().equals(YES) && oponent == 2){
+				System.out.println("This is how the oponents board looks like");
+				showOponentBoard(board);
+			}
+			System.out.println("Do you want to continue?");
+			if (sc.next().equals(YES))
+				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		}
+		 */
+		Ship[] ships = new Ship[1];
+		Ship[] ships2 = new Ship[1];
 		int oponent = 1;
 		boardReset(board);
 		boardReset(board2);
@@ -15,48 +70,34 @@ public class Main {
 		oponent = 2;
 		startGame(board2, ships2, oponent);
 		oponent = 1;
-
-		while (end(board) || end(board2)){
-			if (oponent == 1){
-				System.out.println("it's oponent no.1's turn to shoot");
-				shoot(board2);
-				oponent = 2;
+		while (true){
+			startShooting(board, board2, oponent);
+			oponent = 2;
+			if (end(board2)){
+				System.out.println("Oponent number 1 has won!");
+				break;
 			}
-			else{
-				System.out.println("It's oponent no.2's turn to shoot");
-				shoot(board);
-				oponent = 1;
-			}
-			System.out.println("Do you want to see how your side looks?");
-			if (sc.next().equals(YES)){
-				System.out.println("This is how your side looks like");
-				showBoard(board2);
-			}
-			System.out.println("Do you want to see the oponent's board?");
-			if (sc.next().equals(YES)){
-				System.out.println("This is how the oponents board looks like");
-				showOponentBoard(board2);
-				try {
-					Thread.sleep(50000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+			startShooting(board2, board, oponent);
+			oponent = 1;
+			if (end(board)){
+				System.out.println("Oponent number 2 has won!");
+				break;
 			}
 		}
 	}
 	public static boolean end(int[] board){
 		for (int i : board){
 			if (i == -1)
-				return true;
+				return false;
 		}
-		return false;
+		return true;
 	}
 	public static void shoot(int[] board){
 		boolean hit = true;
+		int check;
 		while (hit){
 			System.out.println("Choose a place to shoot, this should be a number between 1 and 100");
-			int check = sc.nextInt();
+			check = sc.nextInt();
 			if (board[check] == -1){
 				System.out.println("You hit!");
 				board[check] = -2;
@@ -87,7 +128,7 @@ public class Main {
 			if (counter % 10 == 0)
 				System.out.println();
 			if (counter < 10){
-				if (i == -1)
+				if (i == -1 || i == -2)
 					System.out.print(i+"  ");
 				else
 					System.out.print(i+"   ");
@@ -107,6 +148,8 @@ public class Main {
 					i = counter + 1;
 					System.out.print(i+"   ");	
 				}
+				else if (i == -2)
+					System.out.print(i+"  ");
 				else
 					System.out.print(i+"   ");
 			}
@@ -233,10 +276,12 @@ public class Main {
 					showBoard(board);
 					i--;
 				}
+				sc.reset();
 			}
 			catch (InputMismatchException e){
 				System.out.println("Inorrect input, please try again");
 				i--;
+				sc.reset();
 			}
 		}// <----- end of for block
 		System.out.println("Do you want to see how your side looks?");
@@ -244,15 +289,29 @@ public class Main {
 			System.out.println("This is how your side looks like");
 			showBoard(board);
 		}
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		
-		System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("Do you want to continue?");
+		if (sc.next().equals(YES))
+			System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
 	}
-}
+	public static void startShooting(int[] board, int[] board2, int oponent){
+			System.out.println("it's oponent no."+oponent+"'s turn to shoot");
+			shoot(board2);
+			System.out.println("Do you want to see how your side looks?");
+			if (sc.next().equals(YES)){
+				System.out.println("This is how your side looks like");
+				showBoard(board);
+			}
+			System.out.println("Do you want to see the oponent's board?");
+			if (sc.next().equals(YES)){
+				System.out.println("This is how the oponents board looks like");
+				showOponentBoard(board2);
+			}
+			System.out.println("Do you want to continue?");
+			if (sc.next().equals(YES))
+				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		}
+	}
+
 
 
 
