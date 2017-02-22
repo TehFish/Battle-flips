@@ -6,63 +6,16 @@ public class Main {
 	private static final String YES = "yes";
 	public static void main(String[] args) {
 		// TODO fix oponentboard print
-		/**
-		 * 	if (end(board)){
-				System.out.println("Oponent number 2 has won!");
-				break;
-			}
-			else if (end(board2)){
-				System.out.println("Oponent number 1 has won!");
-				break;
-			}
-		 */
-
-
-		/**
-		 * while (true){
-			if (oponent == 1){
-				System.out.println("it's oponent no.1's turn to shoot");
-				shoot(board2);
-				oponent = 2;
-			}
-			else if (oponent == 2){
-				System.out.println("It's oponent no.2's turn to shoot");
-				shoot(board);
-				oponent = 1;
-			}
-			if (end(board)){
-				System.out.println("Oponent number 2 has won!");
-				break;
-			}
-			else if (end(board2)){
-				System.out.println("Oponent number 1 has won!");
-				break;
-			}
-			System.out.println("Do you want to see how your side looks?");
-			if (sc.next().equals(YES) && oponent == 1){
-				System.out.println("This is how your side looks like");
-				showBoard(board);
-			}
-			else if (sc.next().equals(YES) && oponent == 2){
-				System.out.println("This is how your side looks like");
-				showBoard(board2);
-			}
-			System.out.println("Do you want to see the oponent's board?");
-			if (sc.next().equals(YES) && oponent == 1){
-				System.out.println("This is how the oponents board looks like");
-				showOponentBoard(board2);
-			}
-			else if (sc.next().equals(YES) && oponent == 2){
-				System.out.println("This is how the oponents board looks like");
-				showOponentBoard(board);
-			}
-			System.out.println("Do you want to continue?");
-			if (sc.next().equals(YES))
-				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-		}
-		 */
 		Ship[] ships = new Ship[1];
 		Ship[] ships2 = new Ship[1];
+		System.out.println("Do you know the board configurations?");
+		if (sc.next().equals(YES) == false){
+			System.out.println("The board has numbers from 1 to 100");
+			System.out.println("These numbers are the boxes wich you can choose to do actions with");
+			System.out.println("If you see -1 in a board that means there is a ship there");
+			System.out.println("If you see -2 in a board that means that place has been shot");
+			System.out.println("Good luck!");
+		}
 		int oponent = 1;
 		boardReset(board);
 		boardReset(board2);
@@ -292,25 +245,43 @@ public class Main {
 		System.out.println("Do you want to continue?");
 		if (sc.next().equals(YES))
 			System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
-	}
-	public static void startShooting(int[] board, int[] board2, int oponent){
-			System.out.println("it's oponent no."+oponent+"'s turn to shoot");
-			shoot(board2);
-			System.out.println("Do you want to see how your side looks?");
-			if (sc.next().equals(YES)){
-				System.out.println("This is how your side looks like");
-				showBoard(board);
+		else{
+			System.out.println("Ok i'll wait 3 seconds");
+			try {
+				Thread.sleep(3000);
+				System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			System.out.println("Do you want to see the oponent's board?");
-			if (sc.next().equals(YES)){
-				System.out.println("This is how the oponents board looks like");
-				showOponentBoard(board2);
-			}
-			System.out.println("Do you want to continue?");
-			if (sc.next().equals(YES))
-				System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 		}
 	}
+	public static void startShooting(int[] board, int[] board2, int oponent){
+		System.out.println("it's oponent no."+oponent+"'s turn to shoot");
+		shoot(board2);
+		System.out.println("Do you want to see how your side looks?");
+		if (sc.next().equals(YES)){
+			System.out.println("This is how your side looks like");
+			showBoard(board);
+		}
+		System.out.println("Do you want to see the oponent's board?");
+		if (sc.next().equals(YES)){
+			System.out.println("This is how the oponents board looks like");
+			showOponentBoard(board2);
+		}
+		System.out.println("Do you want to continue?");
+		if (sc.next().equals(YES))
+			System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		else{
+			System.out.println("Ok i'll wait 3 seconds");
+			try {
+				Thread.sleep(3000);
+				System.out.println("\n\n\n\n\n\\n\n\n\n\n\n\n\n\n\n\n");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}
 
 
 
