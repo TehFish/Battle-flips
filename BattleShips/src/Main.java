@@ -5,7 +5,7 @@ public class Main {
 	public static int[] board2 = new int[101];
 	private static final String YES = "yes";
 	public static void main(String[] args) {
-		// TODO fix oponentboard print
+		// TODO fuck oftzik
 		Ship[] ships = new Ship[1];
 		Ship[] ships2 = new Ship[1];
 		System.out.println("Do you know the board configurations?");
@@ -129,19 +129,19 @@ public class Main {
 			try{
 				System.out.println("\nEnter the position and direction of the ship");	
 				ships[i] = new Ship();
-				ships[i].setPosition(sc.nextInt());
-				ships[i].setDirection(sc.next().charAt(0));
+				Ship.setPosition(sc.nextInt());
+				Ship.setDirection(sc.next().charAt(0));
 				if (i == 0){
 					if (oponent == 1){
-						ships[i].place(board);
+						Ship.place(board);
 						continue;
 					}
 					else if (oponent == 2){
-						ships[i].place(board2);
+						Ship.place(board2);
 						continue;
 					}
 				}
-				if (board[ships[i].getPosition()] == -1){
+				if (board[Ship.getPosition()] == -1){
 					System.out.println("There is already a ship there, please try again");
 					System.out.println("Do you want to see how your side looks?");
 					if (sc.next().equals(YES)){
@@ -150,9 +150,9 @@ public class Main {
 					}
 					continue;
 				}
-				switch(ships[i].getDirection()){
+				switch(Ship.getDirection()){
 				case 'r':
-					if (board[ships[i].getPosition() + 1] == -1 || board[ships[i].getPosition() + 2] == -1){
+					if (board[Ship.getPosition() + 1] == -1 || board[Ship.getPosition() + 2] == -1){
 						System.out.println("There is already a ship there please try again");
 						i--;
 						System.out.println("Do you want to see how your side looks?");
@@ -164,12 +164,12 @@ public class Main {
 					}
 
 					if (oponent == 1)
-						ships[i].place(board);
+						Ship.place(board);
 					else
-						ships[i].place(board2);
+						Ship.place(board2);
 					continue;
 				case 'l':
-					if (board[ships[i].getPosition() - 1] == -1 || board[ships[i].getPosition() - 2] == -1){	
+					if (board[Ship.getPosition() - 1] == -1 || board[Ship.getPosition() - 2] == -1){	
 						System.out.println("There is already a ship there please try again");
 						i--;
 						System.out.println("Do you want to see how your side looks?");
@@ -181,12 +181,12 @@ public class Main {
 					}
 
 					if (oponent == 1)
-						ships[i].place(board);
+						Ship.place(board);
 					else
-						ships[i].place(board2);
+						Ship.place(board2);
 					continue;
 				case 'd':
-					if (board[ships[i].getPosition() + 10] == -1 || board[ships[i].getPosition() + 20] == -1){
+					if (board[Ship.getPosition() + 10] == -1 || board[Ship.getPosition() + 20] == -1){
 						System.out.println("There is already a ship there please try again");
 						i--;
 						System.out.println("Do you want to see how your side looks?");
@@ -197,12 +197,12 @@ public class Main {
 						break;
 					}
 					if (oponent == 1)
-						ships[i].place(board);
+						Ship.place(board);
 					else
-						ships[i].place(board2);
+						Ship.place(board2);
 					continue;
 				case 'u':	
-					if (board[ships[i].getPosition() - 10] == -1 || board[ships[i].getPosition() - 20] == -1){
+					if (board[Ship.getPosition() - 10] == -1 || board[Ship.getPosition() - 20] == -1){
 						System.out.println("There is already a ship there please try again");
 						i--;
 						System.out.println("Do you want to see how your side looks?");
@@ -213,9 +213,9 @@ public class Main {
 						break;
 					}
 					if (oponent == 1)
-						ships[i].place(board);
+						Ship.place(board);
 					else
-						ships[i].place(board2);
+						Ship.place(board2);
 					continue;
 				}
 			}
